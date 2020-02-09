@@ -23,8 +23,15 @@ Kenzie Assignment: String2
 
 
 def verbing(s):
-    # your code here
-    return
+    length = len(s)
+
+    if length > 2:
+        if s[-3:] == 'ing':
+            s += 'ly'
+        else:
+            s += 'ing'
+
+    return s
 
 
 # E. not_bad
@@ -36,8 +43,13 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-    # your code here
-    return
+    isnot = s.find('not')
+    isbad = s.find('bad')
+
+    if isbad > isnot:
+        s = s.replace(s[isnot:(isbad+3)], 'good')
+
+    return s
 
 
 # F. front_back
@@ -48,8 +60,26 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    # your code here
-    return
+    alength = len(a)
+    blength = len(b)
+
+    if alength % 2 == 0:
+        aindex = alength // 2
+    else:
+        aindex = (alength // 2) + 1
+
+    if blength % 2 == 0:
+        bindex = blength // 2
+    else:
+        bindex = (blength // 2) + 1
+
+    afront = a[0:aindex]
+    aback = a[aindex:]
+
+    bfront = b[0:bindex]
+    bback = b[bindex:]
+
+    return afront + bfront + aback + bback
 
 
 # Provided simple test() function used in main() to print
@@ -59,7 +89,8 @@ def test(got, expected):
         prefix = ' OK '
     else:
         prefix = '  X '
-    print('{} got: {}     expected: {}'.format(prefix, repr(got), repr(expected)))
+    print('{} got: {}     expected: {}'.format(
+        prefix, repr(got), repr(expected)))
 
 
 # main() calls the above functions with interesting inputs,
