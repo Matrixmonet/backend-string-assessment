@@ -1,33 +1,37 @@
 #!/usr/bin/env python
 """
-Kenzie assignment: String1
+kenzie assignment: string1
 """
-# Copyright 2010 Google Inc.
-# Licensed under the Apache License, Version 2.0
-# http://www.apache.org/licenses/LICENSE-2.0
+# copyright 2010 google inc.
+# licensed under the apache license, version 2.0
+# http://www.apache.org/licenses/license-2.0
 
-# Google's Python Class
+# google's python class
 # http://code.google.com/edu/languages/google-python-class/
 
-# Instructions:
-# Complete each function below by writing the code for it. main() is already
-# set up to test all the functions with a few different inputs, printing 'OK' when
+# instructions:
+# complete each function below by writing the code for it. main() is already
+# set up to test all the functions with a few different inputs, printing 'ok' when
 # each function returns the correct result.
-# The starter code for each function includes a bare 'return' which is just a
+# the starter code for each function includes a bare 'return' which is just a
 # placeholder for your code.
 
-# A. donuts
-# Given an int count of a number of donuts, return a string
-# of the form 'Number of donuts: <count>', where <count> is the number
-# passed in. However, if the count is 10 or more, then use the word 'many'
+# a. donuts
+# given an int count of a number of donuts, return a string
+# of the form 'number of donuts: <count>', where <count> is the number
+# passed in. however, if the count is 10 or more, then use the word 'many'
 # instead of the actual count.
-# So donuts(5) returns 'Number of donuts: 5'
-# and donuts(23) returns 'Number of donuts: many'
+# so donuts(5) returns 'number of donuts: 5'
+# and donuts(23) returns 'number of donuts: many'
 
 
 def donuts(count):
-    # your code here
-    return
+    if count >= 10:
+        return 'Number of donuts: many'
+    else:
+        amt = str(count)
+
+    return 'Number of donuts: ' + amt
 
 
 # B. both_ends
@@ -36,8 +40,10 @@ def donuts(count):
 # so 'spring' yields 'spng'. However, if the string length
 # is less than 2, return instead the empty string.
 def both_ends(s):
-    # your code here
-    return
+    if len(s) < 2:
+        return ''
+
+    return s[0:2] + s[-2:]
 
 
 # C. fix_start
@@ -50,9 +56,11 @@ def both_ends(s):
 # Hint: s.replace(stra, strb) returns a version of string s
 # where all instances of stra have been replaced by strb.
 def fix_start(s):
-    # your code here
-    return
+    firstChar = s[0]
+    s = s.replace(firstChar, '*')
+    s = firstChar + s[1:]
 
+    return s
 
 # D. MixUp
 # Given strings a and b, return a single string with a and b separated
@@ -61,19 +69,24 @@ def fix_start(s):
 #   'mix', pod' -> 'pox mid'
 #   'dog', 'dinner' -> 'dig donner'
 # Assume a and b are length 2 or more.
+
+
 def mix_up(a, b):
-    # your code here
-    return
+    new_a = b[:2] + a[2:]
+    new_b = a[:2] + b[2:]
+
+    return new_a + ' ' + new_b
 
 
 # Provided simple test() function used in main() to print
-# what each function returns vs. what it's supposed to return.
+#  what each function returns vs. what it's supposed to return.
 def test(got, expected):
     if got == expected:
         prefix = ' OK '
     else:
         prefix = '  X '
-    print('{} got: {}    expected: {}'.format(prefix, repr(got), repr(expected)))
+    print('{} got: {}    expected: {}'.format(
+        prefix, repr(got), repr(expected)))
 
 
 # The main() func calls the above functions with interesting inputs,
